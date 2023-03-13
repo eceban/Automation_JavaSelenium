@@ -11,7 +11,6 @@ import java.time.Duration;
 public class BeforeAfter {
     public WebDriver driver;
 
-    @BeforeMethod
     public void setDriver() {
         // setam driverul pentru browser chrome
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
@@ -30,7 +29,6 @@ public class BeforeAfter {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
-    @AfterMethod
     public void closeDriver(){
         // driver.close() - inchide doar tabul curent
         // driver.quit() - inchide instanta de browser cu toate taburile

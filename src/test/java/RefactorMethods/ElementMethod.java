@@ -48,26 +48,37 @@ public class ElementMethod {
         new Select(element).selectByValue(value);
     }
 
-    public void dropdownSeveralOptions(List element, String value){
-        List<WebElement> optionSelect = element;
-        for (Integer index = 0; index < optionSelect.size(); index++) {
-            if (optionSelect.get(index).getText().equals(value)) {
-                optionSelect.get(index).click();
+    /*
+    public void dropdownSeveralOptions(List<WebElement> elementsList, String value){
+        for (Integer index = 0; index < elementsList.size(); index++) {
+            if (elementsList.get(index).getText().equals(value)) {
+                elementsList.get(index).click();
+                break;
+            }
+        }
+    }
+    */
+
+    public void dropdownSeveralOptions(List<WebElement> elementsList, String value){
+        for (WebElement element : elementsList) {
+            if (element.getText().equals(value)) {
+                element.click();
                 break;
             }
         }
     }
 
+    public void switchToElement(WebElement element){
+        waitVisibleElement(element);
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
+    }
+
     public void validateElementMessage(WebElement element, String expectedMessage){
         waitVisibleElement(element);
         String actualMessage = element.getText();
-        Assert.assertEquals(actualMessage, expectedMessage, "Textul din alerta nu este corect");
-    }
-
-    public void switchToElement(WebElement element){
-        waitVisibleElement(element);
-        Actions actiuni = new Actions(driver);
-        actiuni.moveToElement(element).perform();
+        System.out.println(actualMessage);
+        Assert.assertEquals(actualMessage, expectedMessage, "Wrong message");
     }
 
 }
