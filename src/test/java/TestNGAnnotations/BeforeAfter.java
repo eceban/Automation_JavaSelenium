@@ -2,6 +2,7 @@ package TestNGAnnotations;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,11 +13,18 @@ public class BeforeAfter {
     public WebDriver driver;
 
     public void setDriver() {
+
+        Boolean cicd = Boolean.parseBoolean(System.getProperty("cicd"));
+        ChromeOptions options = new ChromeOptions();
+        if (cicd){
+            options.addArguments("--headless");
+        }
+
         // setam driverul pentru browser chrome
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
         // facem o instanta de chrome
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
 
         // accesam un anumit URL
         driver.get("https://demo.automationtesting.in/Index.html");
