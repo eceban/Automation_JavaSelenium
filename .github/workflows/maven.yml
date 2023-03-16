@@ -26,7 +26,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+<<<<<<< HEAD
       run: mvn clean install -Dcicd=true
+=======
+      run: mvn clean install  -Dcicd=true
+>>>>>>> 11d0e7ae30336095a63260334d894e1adea75c24
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
